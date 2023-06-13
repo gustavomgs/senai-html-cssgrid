@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexbox | Senai - Gustavo Messias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    
+    <div class="container">
+
+      <article class="col-lg-12">
+        <h2>O que é e quando usar flex-box e CSS Grid layout.</h2>
+<p>O <a href="https://www.treinaweb.com.br/blog/flexbox-ou-css-grid" title="CSS Grid e os flexbox">CSS Grid e os flexbox</a> são ferramentas do CSS criadas para facilitar o posicionamento e a manipulação de elementos no HTML. A recomendação para utilização do <a href="https://www.treinaweb.com.br/blog/comecando-com-o-novo-css-grid-layout" title="CSS Grid">CSS Grid</a> é para ser aplicado quando formos utilizar elementos em duas dimensões (ex. linhas e colunas), como o layout de uma página. Já o flexbox é mais recomendado para ser utilizado quando formos trabalhar em apenas uma dimensão, seja ela tanto vertical quanto horizontal. Vamos ver na prática.</p>
+<h2>O laytout que vamos desenvolver.</h2>
+<p></p>
+<p>Vamos desenvolver um layout simples, porém que permitirá conhecer as ferramentas na prática, além de mostrar a parte da responsividade. Ele foi feito com a utilização do CSS Grid, que como foi citado acima, a ferramenta facilita essa manipulação em duas dimensões. A parte do rodapé o “footer” foi feita com flexbox seguindo o recomendado, pois temos apenas uma dimensão.</p>
+<p>Veja como ficará a estrutura do nosso Layout:</p>
+<p>Telas grandes (desktop)</p>
+<p><img class="lazy entered loaded" data-src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_desktop.png" src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_desktop.png" alt="Imagem de como vai ficar o layout desenvolvido em um desktop" data-ll-status="loaded" style="cursor: zoom-in;"></p>
+<p>Telas intermediárias (tablet)</p>
+<p><img class="lazy entered loaded" data-src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_tablet.png" src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_tablet.png" alt="Imagem de como vai ficar o layout desenvolvido em um tablet" data-ll-status="loaded" style="cursor: zoom-in;"></p>
+<p>Telas Pequenas (smartphone)</p>
+<p><img class="lazy entered loaded" data-src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_mobile.png" src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2021/09/img_mobile.png" alt="Imagem de como vai ficar o layout desenvolvido em um celular" data-ll-status="loaded" style="cursor: zoom-in;"></p>
+<h2>Estrutura do documento HTML</h2>
+<p>Para criar esse layout fizemos um HTML bem simples, com um cabeçalho, conteúdo principal, barra lateral e rodapé divido em três partes.</p>
+<button class="copy-code-button" type="button">Copiar</button><pre class=" language-html" tabindex="0"><code class=" language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>teste.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>conteudo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>sidebar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h2>Explicação passo a passo CSS</h2>
+<p></p>
+<p>Primeira coisa que vamos fazer é “zerar” algumas propriedades que vem automaticamente definida quando se inicia um documento HTML, como <code>padding</code> e <code>margin</code>. Vamos também fazer algumas alterações no texto, como, deixar o itálico, aumentar o tamanho da letra, alterar a cor e centralizar.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"><span class="token selector">body,
+p</span>   <span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token property">font-size</span><span class="token punctuation">:</span> 1.5rem<span class="token punctuation">;</span>      <span class="token comment">/* tamanho da fonte */</span>
+<span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>     <span class="token comment">/* estilo */</span>
+<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>80<span class="token punctuation">,</span> 78<span class="token punctuation">,</span> 78<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* cor do texto */</span>
+<span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>     <span class="token comment">/* alinhamento */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Após isso vamos criar uma classe principal para englobar todo nosso documento e dividir o nosso rodapé, eu dei o nome de “principal” e o rodapé dei os nomes de “parte1”, “parte2” e “parte3” para facilitar na compreensão.</p>
+<pre class=" language-html" tabindex="0"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>principal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>conteudo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>sidebar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>parte1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>parte2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>parte3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>parte 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Agora no nosso CSS chamamos a nossa classe e a declaramos como grid, que é o formato que vamos utilizar no nosso layout. Note que foi declarado um <code>width</code>  de 80% apenas para o conteúdo não ficar colado nas laterais.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"><span class="token selector">.principal</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Agora precisamos definir as colunas e linhas do nosso grid, para isso, chamamos as propriedades <code>grid-template-columns</code> e <code>grid-template-rows</code>, para declararmos as medidas que queremos em nosso <code>grid-template</code>.
+Podemos também dar nomes aos espaços que criamos com a propriedade <code>grid-template-areas</code>.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"><span class="token selector">.principal</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+<span class="token property">grid-template-columns</span><span class="token punctuation">:</span> 75% 25%<span class="token punctuation">;</span>
+<span class="token property">grid-template-rows</span><span class="token punctuation">:</span> 100px 450px 150px<span class="token punctuation">;</span>
+<span class="token property">grid-template-areas</span><span class="token punctuation">:</span> <span class="token string">"cabecalho cabecalho"</span> 
+             <span class="token string">"secao barra-lateral"</span> 
+             <span class="token string">"rodape rodape"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Com os nomes de nossas áreas declaradas, agora é só denominar o que vamos colocar em cada um dos espaços com a propriedade <code>grid-area</code>.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"><span class="token selector">.principal</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+<span class="token property">grid-template-columns</span><span class="token punctuation">:</span> 75% 25%<span class="token punctuation">;</span>
+<span class="token property">grid-template-rows</span><span class="token punctuation">:</span> 100px 450px 150px<span class="token punctuation">;</span>
+<span class="token property">grid-template-areas</span><span class="token punctuation">:</span> <span class="token string">"cabecalho cabecalho"</span> 
+             <span class="token string">"secao barra-lateral"</span> 
+             <span class="token string">"rodape rodape"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">header</span> <span class="token punctuation">{</span>
+<span class="token property">grid-area</span><span class="token punctuation">:</span> cabecalho<span class="token punctuation">;</span>
+<span class="token property">background-color</span><span class="token punctuation">:</span> #48CFE0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">section</span> <span class="token punctuation">{</span>
+<span class="token property">grid-area</span><span class="token punctuation">:</span> secao<span class="token punctuation">;</span>
+<span class="token property">background-color</span><span class="token punctuation">:</span> #E05DA1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">aside</span> <span class="token punctuation">{</span>
+<span class="token property">grid-area</span><span class="token punctuation">:</span> barra-lateral<span class="token punctuation">;</span>
+<span class="token property">background-color</span><span class="token punctuation">:</span> #E0D475<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">footer</span> <span class="token punctuation">{</span>
+<span class="token property">grid-area</span><span class="token punctuation">:</span> rodape<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Na parte do rodapé, vamos utilizar o flexbox. Para isso, a primeira coisa a se fazer é declarar <code>display: flex</code>. Em seguida, definimos o <code>justify-content</code> que é uma propriedade para conseguirmos alinhar os elementos da maneira que for necessário, no caso vamos usar o “space-evenly”, que faz o espaçamento igualmente entre os elementos do container. E com isso podemos definir o tamanho de cada parte do nosso footer nas suas próprias classes.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"> <span class="token selector">footer</span> <span class="token punctuation">{</span>
+<span class="token property">grid-area</span><span class="token punctuation">:</span> rodape<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token property">justify-content</span><span class="token punctuation">:</span> space-evenly<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.parte1, .parte2, .parte3</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 25%<span class="token punctuation">;</span>
+<span class="token property">background-color</span><span class="token punctuation">:</span> #5de05e<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.parte2</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0 2px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.parte3</span> <span class="token punctuation">{</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p>
+<h3>Telas menores</h3>
+<p>Na parte de responsividade, primeiro vamos fazer as medidas para telas um pouco menores, como os tablets. Para isso vamos redeclarar nosso grid com apenas uma coluna.</p>
+<p>Em seguida, no <code>footer</code>, nós declaramos a seguinte propriedade: <code>flex-wrap:wrap;</code>. Essa propriedade diz ao navegador que quando a tela estiver pequena e não couber mais a <code>parte1</code> e <code>parte3</code> uma do lado da outra, ela vai jogar um dos elementos para baixo.</p>
+<p>Já na <code>parte2</code>, lembra que nas telas intermediárias ela deve ficar acima dos itens <code>parte1</code> e <code>parte3</code>? Para isso vamos colocar nosso rodapé um item acima com o flex, usando a propriedade <code>order: -1;</code>, para que ele suba uma posição.</p>
+<p>Veja como ficou o código CSS:</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"><span class="token atrule"><span class="token rule">@media</span><span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 992px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+<span class="token selector">.principal</span> <span class="token punctuation">{</span>
+<span class="token property">grid-template-columns</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token property">grid-template-areas</span><span class="token punctuation">:</span> <span class="token string">"cabecalho"</span> <span class="token string">"secao"</span> <span class="token string">"barra-lateral"</span> <span class="token string">"rodape"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">footer</span> <span class="token punctuation">{</span>
+<span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+<span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.parte1, .parte2, .parte3</span> <span class="token punctuation">{</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> solid 1px #fff<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 49%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.parte2</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token property">order</span><span class="token punctuation">:</span> -1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Para dispositivos com telas menores, como todo o corpo já está responsivo, basta alterar cada parte do nosso footer para voltar a ocupar 100% do tamanho do container e retomar a <code>parte2</code> para o lugar inicial dela com <code>order: initial;</code>.</p>
+<pre class=" language-css" tabindex="0"><code class=" language-css"> <span class="token atrule"><span class="token rule">@media</span><span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+<span class="token selector">body</span> <span class="token punctuation">{</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 0 15px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.principal, .parte1, .parte2, .parte3</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.parte2</span> <span class="token punctuation">{</span>
+<span class="token property">order</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    </article>
+
+    </div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
